@@ -5,7 +5,6 @@ const Navbar = () => {
 
     let location = useLocation();
     useEffect(() => {
-        console.log(location.pathname)
     }, [location])
 
     return (
