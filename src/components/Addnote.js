@@ -10,12 +10,13 @@ const Addnote = () => {
   const [checked, setChecked] = React.useState(false)
   const containerRef = React.useRef(null)
 
-  const [note, setnote] = useState({
+  const noteInitial= {
     title: '',
     description: '',
-    tag: 'Testing',
+    tag: '',
     img:''
-  })
+  }
+  const [note, setnote] = useState(noteInitial)
 
   const context = useContext(noteContext)
   const { addNote } = context
@@ -30,6 +31,7 @@ const Addnote = () => {
 
   const handleNote = () => {
     addNote(note.title, note.description, note.img, note.tag)
+    setnote(noteInitial)
   }
 
   return (
@@ -61,6 +63,7 @@ const Addnote = () => {
             color='info'
             onChange={onChange}
             required={true}
+            value={note.title}
           />
           <TextField
             className='m-4 w-5 d-flex justify-content-center'
@@ -79,6 +82,7 @@ const Addnote = () => {
             color='info'
             onChange={onChange}
             required={true}
+            value={note.description}
           />
           <div className='d-flex justify-content-center flex-wrap p-2'>
              <div>
@@ -97,6 +101,7 @@ const Addnote = () => {
                       transition: 'backgroundColor 0.8s ease-in-out'
                     }
                   }}
+                  value={note.tag}
                   />
 
                 <TextField
@@ -115,6 +120,7 @@ const Addnote = () => {
                       transition: 'backgroundColor 0.8s ease-in-out'
                     }
                   }}
+                  value={note.img}
                   />
               </div>   
 

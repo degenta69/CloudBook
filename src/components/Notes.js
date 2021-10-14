@@ -17,13 +17,14 @@ const Notes = () => {
     const classes = useStyles();
   const context = useContext(noteContext)
   const { notes, addNote, getNote, editNote } = context
-  const [note, setnote] = useState({
+  const noteInitial={
     e_id: '',
     e_title: '',
     e_description: '',
-    e_tag: 'Testing',
+    e_tag: '',
     e_img: ''
-  })
+  }
+  const [note, setnote] = useState(noteInitial)
 
   useEffect(() => {
     getNote()
@@ -44,6 +45,7 @@ const Notes = () => {
   const handleNote = (e) => {
     e.preventDefault();
     editNote(note.e_id ,note.e_title, note.e_description, note.e_img, note.e_tag)
+    setnote(noteInitial)
     setToggle(false)
   }
   const closeDrawer = () => {
