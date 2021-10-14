@@ -45,6 +45,7 @@ const NoteState = (props)=>{
         const note = await response.json(); // parses JSON response into native JavaScript objects
         setNotes(notes.concat(note));
       }
+      
       const deleteNote=async(id)=>{
         const response = await fetch(`${HOST}/api/notes/deletenote/${id}`, {
           method: 'DELETE', // *GET, POST, PUT, DELETE, etc.

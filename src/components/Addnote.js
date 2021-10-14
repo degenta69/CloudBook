@@ -5,6 +5,10 @@ import noteContext from '../context/notes/NoteContext'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import { Button } from '@mui/material'
+import Login from './Login'
+import Signup from './Signup'
+import Divider from '@mui/material/Divider';
+
 
 const Addnote = () => {
   const [checked, setChecked] = React.useState(false)
@@ -35,6 +39,7 @@ const Addnote = () => {
   }
 
   return (
+   
     <>
       <FormControlLabel
         className='d-flex justify-content-center'
@@ -42,6 +47,28 @@ const Addnote = () => {
         label='Add Note'
         labelPlacement='top'
       />
+      { checked === false
+      ? 
+      
+      <div className="mx-2 d-flex justify-content-around" style={{
+        display:`${checked === true && 'none'}`,
+        transition: 'display 1s ease-in-and-out'
+
+      }}>
+
+        <Login/>
+        <Divider component="br" orientation="vertical" variant="middle" flexItem={true}
+        sx={{
+          border: {
+            borderBottom: "solid lightgray",
+            flexGrow: 1,
+          }
+        }}
+        
+        />
+        <Signup/>
+      </div>
+      :<div>
       <Slide direction='up' in={checked} container={containerRef.current}>
         <form
           className='d-flex flex-column justify-content-center'
@@ -147,6 +174,8 @@ const Addnote = () => {
           </div>
         </form>
       </Slide>
+      </div>
+      }
     </>
   )
 }
