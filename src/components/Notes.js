@@ -4,20 +4,18 @@ import Addnote from './Addnote'
 import Notesitem from './Notesitem'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import TextField from '@mui/material/TextField'
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@mui/material'
 
-
 const useStyles = makeStyles({
-    backgroundColor: '#61b33b',
-
+  backgroundColor: '#61b33b'
 })
 
 const Notes = () => {
-    const classes = useStyles();
+  const classes = useStyles()
   const context = useContext(noteContext)
   const { notes, addNote, getNote, editNote } = context
-  const noteInitial={
+  const noteInitial = {
     e_id: '',
     e_title: '',
     e_description: '',
@@ -37,19 +35,31 @@ const Notes = () => {
 
   const [toggle, setToggle] = useState(false)
 
-  const updateNote = (currentNote) => {
-      setToggle(true)
-      setnote({e_id:currentNote._id, e_title: currentNote.title, e_description: currentNote.description, e_tag: currentNote.tag, e_img:currentNote.img})
+  const updateNote = currentNote => {
+    setToggle(true)
+    setnote({
+      e_id: currentNote._id,
+      e_title: currentNote.title,
+      e_description: currentNote.description,
+      e_tag: currentNote.tag,
+      e_img: currentNote.img
+    })
   }
 
-  const handleNote = (e) => {
-    e.preventDefault();
-    editNote(note.e_id ,note.e_title, note.e_description, note.e_img, note.e_tag)
+  const handleNote = e => {
+    e.preventDefault()
+    editNote(
+      note.e_id,
+      note.e_title,
+      note.e_description,
+      note.e_img,
+      note.e_tag
+    )
     setnote(noteInitial)
     setToggle(false)
   }
   const closeDrawer = () => {
-   setToggle(false)
+    setToggle(false)
   }
   return (
     <>
@@ -67,7 +77,7 @@ const Notes = () => {
         <div
           className={classes.backgroundColor}
           style={{
-            'backgroundColor': '#FFEF60'
+            backgroundColor: '#FFEF60'
           }}
         >
           <TextField
@@ -87,7 +97,7 @@ const Notes = () => {
             value={note.e_title}
             required={true}
             inputProps={{
-                minLength: '5'
+              minLength: '5'
             }}
           />
           <TextField
@@ -109,7 +119,7 @@ const Notes = () => {
             value={note.e_description}
             required={true}
             inputProps={{
-                minLength: '5'
+              minLength: '5'
             }}
           />
           <div>
@@ -150,7 +160,7 @@ const Notes = () => {
               value={note.e_img}
             />
             <Button
-            className="m-3"
+              className='m-3'
               size='large'
               sx={{
                 width: '30%',
@@ -169,7 +179,7 @@ const Notes = () => {
               UPDATE NOTE
             </Button>
             <Button
-            className="m-3"
+              className='m-3'
               size='small'
               sx={{
                 width: '15%',

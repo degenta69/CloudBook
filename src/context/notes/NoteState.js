@@ -17,8 +17,8 @@ const NoteState = (props)=>{
           },
         });
         const json = await response.json(); // parses JSON response into native JavaScript objects
-        console.log(json);
-        setNotes(json);
+        console.log(json.notes);
+        setNotes(json.notes);
       }
       // const apiCall = async()=>{
       //   const response = await fetch(url, {
@@ -43,7 +43,7 @@ const NoteState = (props)=>{
           body: JSON.stringify({title, description, img, tag}) // body data type must match "Content-Type" header
         });
         const note = await response.json(); // parses JSON response into native JavaScript objects
-        setNotes(notes.concat(note));
+        setNotes(notes.concat(note.savedNote));
       }
       
       const deleteNote=async(id)=>{
@@ -72,7 +72,7 @@ const NoteState = (props)=>{
           body: JSON.stringify({title, description, img, tag}) // body data type must match "Content-Type" header
         });
         const json = await response.json(); // parses JSON response into native JavaScript objects
-        console.log(json)
+        console.log(json.note)
 
         let updateNotes = JSON.parse(JSON.stringify(notes))
          for (let index = 0; index < updateNotes.length; index++) {
