@@ -12,7 +12,7 @@ const NoteState = (props)=>{
           method: 'GET', // *GET, POST, PUT, DELETE, etc.
           headers: {
             'Content-Type': 'application/json',
-            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2NDNkMzU2Yjc4Y2ZhZTE2MGViODUwIn0sImlhdCI6MTYzMzk1OTMwM30.P8BpwHMYt4IdatyQ54oYtqBeeT_7vqslzmpJJF7-qrs',
+            'auth-token': localStorage.getItem('token'),
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
@@ -37,7 +37,7 @@ const NoteState = (props)=>{
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           headers: {
             'Content-Type': 'application/json',
-            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2NDNkMzU2Yjc4Y2ZhZTE2MGViODUwIn0sImlhdCI6MTYzMzk1OTMwM30.P8BpwHMYt4IdatyQ54oYtqBeeT_7vqslzmpJJF7-qrs',
+            'auth-token': localStorage.getItem('token'),
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: JSON.stringify({title, description, img, tag}) // body data type must match "Content-Type" header
@@ -51,7 +51,7 @@ const NoteState = (props)=>{
           method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
           headers: {
             'Content-Type': 'application/json',
-            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2NDNkMzU2Yjc4Y2ZhZTE2MGViODUwIn0sImlhdCI6MTYzMzk1OTMwM30.P8BpwHMYt4IdatyQ54oYtqBeeT_7vqslzmpJJF7-qrs',
+            'auth-token': localStorage.getItem('token'),
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
@@ -66,7 +66,7 @@ const NoteState = (props)=>{
           method: 'PUT', // *GET, POST, PUT, DELETE, etc.
           headers: {
             'Content-Type': 'application/json',
-            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2NDNkMzU2Yjc4Y2ZhZTE2MGViODUwIn0sImlhdCI6MTYzMzk1OTMwM30.P8BpwHMYt4IdatyQ54oYtqBeeT_7vqslzmpJJF7-qrs',
+            'auth-token': localStorage.getItem('token'),
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: JSON.stringify({title, description, img, tag}) // body data type must match "Content-Type" header

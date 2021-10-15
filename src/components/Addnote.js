@@ -5,12 +5,9 @@ import noteContext from '../context/notes/NoteContext'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import { Button } from '@mui/material'
-import Login from './Login'
-import Signup from './Signup'
-import Divider from '@mui/material/Divider';
 
 
-const Addnote = () => {
+const Addnote = (props) => {
   const [checked, setChecked] = React.useState(false)
   const containerRef = React.useRef(null)
 
@@ -35,6 +32,7 @@ const Addnote = () => {
 
   const handleNote = () => {
     addNote(note.title, note.description, note.img, note.tag)
+    props.showAlert('added note successfully', 'success')
     setnote(noteInitial)
   }
 
@@ -56,7 +54,7 @@ const Addnote = () => {
 
       }}>
 
-        <Login/>
+        {/* <Login/>
         <Divider component="br" orientation="vertical" variant="middle" flexItem={true}
         sx={{
           border: {
@@ -66,7 +64,7 @@ const Addnote = () => {
         }}
         
         />
-        <Signup/>
+        <Signup/> */}
       </div>
       :<div>
       <Slide direction='up' in={checked} container={containerRef.current}>

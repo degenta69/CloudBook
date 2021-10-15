@@ -6,12 +6,14 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import TextField from '@mui/material/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@mui/material'
+import { useHistory } from 'react-router'
 
 const useStyles = makeStyles({
   backgroundColor: '#61b33b'
 })
 
-const Notes = () => {
+const Notes = (props) => {
+  let history=useHistory();
   const classes = useStyles()
   const context = useContext(noteContext)
   const { notes, addNote, getNote, editNote } = context
@@ -25,7 +27,13 @@ const Notes = () => {
   const [note, setnote] = useState(noteInitial)
 
   useEffect(() => {
-    getNote()
+    if(localStorage.getItem('token')){
+
+      getNote()
+    }
+    else{
+      history.push('/login')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -55,6 +63,7 @@ const Notes = () => {
       note.e_img,
       note.e_tag
     )
+    props.showAlert('updated Successfully','success')
     setnote(noteInitial)
     setToggle(false)
   }
@@ -63,7 +72,7 @@ const Notes = () => {
   }
   return (
     <>
-      <Addnote addNote={addNote} />
+      <Addnote showAlert={props.showAlert} addNote={addNote} />
       <SwipeableDrawer
         anchor='bottom'
         open={toggle}
@@ -208,7 +217,7 @@ const Notes = () => {
       >
         {notes.map(note => {
           return (
-            <Notesitem key={note._id} updateNote={updateNote} note={note} />
+            <Notesitem key={note._id} showAlert={props.showAlert} updateNote={updateNote} note={note} />
           )
         })}
       </div>

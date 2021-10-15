@@ -24,10 +24,17 @@ const Navbar = () => {
                                 <Link className={`nav-link ${location.pathname==='/about'?"active":""}`} to="/about">About</Link>
                             </li>
                         </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className ="btn btn-outline-success" type ="submit">Search</button>
-                        </form>
+
+                        {!localStorage.getItem('token')?
+                            <form className="d-flex">
+                            <Link to="/login" className ="btn btn-outline-info mx-1" type ="submit">LogIN</Link>
+                            <Link to="/signup" className ="btn btn-outline-success mx-1" type ="submit">SignUP</Link>
+                           </form>
+                           :<form className="d-flex">
+                           <Link to="/login" onClick={()=>{localStorage.removeItem('token')}} className ="btn btn-info mx-1" type ="submit">LogOut</Link>
+                           </form>
+                        }
+
                     </div>
                 </div>
             </nav>

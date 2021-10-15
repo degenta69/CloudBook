@@ -25,7 +25,7 @@ export default function Notesitems(props) {
         maxWidth: 280,
         borderWidth: '5px',
         backgroundColor: '#FFEF60',
-        boxShadow: '10px 10px 45px -1px rgba(0,0,0,0.75)',
+        boxShadow: '10px 10px 35px -1px rgba(0,0,0,0.75)',
         borderRadius: "0px 17px 0px 36px / 150px 98px 150px 150px"
         }}>
     {
@@ -69,7 +69,7 @@ export default function Notesitems(props) {
             <IconButton aria-label="edit" onClick={()=>{updateNote(note)}}>
             <EditRoundedIcon />
             </IconButton>
-            <IconButton onClick={()=>{deleteNote(note._id)}} aria-label="delete">
+            <IconButton onClick={()=>{deleteNote(note._id); props.showAlert('deleted note succesfully','success')}} aria-label="delete">
             <BackspaceOutlinedIcon />
             </IconButton>
             <IconButton aria-label="share">

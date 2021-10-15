@@ -5,22 +5,44 @@ import Home from './components/Home'
 import About from './components/About'
 import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
+import Login from './components/Login'
+import Signup from './components/Signup'
+import { useState } from 'react'
 
 function App () {
+  const [alert, setAlert] = useState({msg:'', type:''})
+
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+        setAlert({msg:'',type:''});
+    }, 1500);
+}
   return (
     <>
        <NoteState>
         <Router>
           <Navbar />
-          <Alert />
+          <Alert alert={alert}/>
 
           <Switch>
             <Route exact path='/'>
-              <Home />
+              <Home showAlert={showAlert} />
             </Route>
             <Route exact path='/about'>
               <About />
             </Route>
+            <Route exact path='/login'>
+              <Login showAlert={showAlert} />
+            </Route>
+            <Route exact path='/signup'>
+              <Signup showAlert={showAlert} />
+            </Route>
+            
+
           </Switch>
         </Router>
         </NoteState>
