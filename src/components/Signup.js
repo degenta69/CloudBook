@@ -10,6 +10,7 @@ import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 import { Typography, Button } from '@mui/material';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import { useHistory } from 'react-router';
+import { FormHelperText } from '@mui/material';
 
 
 const Signup = (props) => {
@@ -19,6 +20,7 @@ const Signup = (props) => {
   const [values, setValues] = React.useState({
       password: '',
       email: '',
+      pfp:'',
       showPassword: false,
       cpassword:'',
       name:''
@@ -43,14 +45,14 @@ const Signup = (props) => {
         e.preventDefault();
         console.log('click')
         
-            const {name , email, password}= values;
+            const {name , email, password, pfp}= values;
           const response = await fetch('http://localhost:5000/api/auth/createuser', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
-              'Content-Type': 'application/json',
+              
               // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({name, email, password}) // body data type must match "Content-Type" header
+            body: JSON.stringify({name, email, password, pfp}) // body data type must match "Content-Type" header
           });
           const json = await response.json();
           console.log(json)
@@ -69,7 +71,7 @@ const Signup = (props) => {
     return (
     <>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
 
         <div className="container row"
         style={{
@@ -89,6 +91,7 @@ const Signup = (props) => {
         </InputLabel>
         <FilledInput 
           type="input"
+          name="email"
           id="input-with-icon-adornment"
           onChange={handleChange('email')}
           endAdornment={
@@ -104,6 +107,7 @@ const Signup = (props) => {
         </InputLabel>
         <FilledInput 
           type="input"
+          name="username"
           id="input-with-icon-adornment-username"
           onChange={handleChange('name')}
         />
@@ -114,6 +118,7 @@ const Signup = (props) => {
           <FilledInput
             id="outlined-adornment-password-signup"
             notched='true'
+            name="password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -151,6 +156,24 @@ const Signup = (props) => {
             }}
           />
         </FormControl> 
+        
+        <FormControl className='mb-1' sx={{ margin: 'auto', width: '25ch' }} variant="filled">
+        <FormHelperText id="my-helper-text">Profile Pic</FormHelperText>
+          <FilledInput
+          name="pfp"
+          area-aria-describedby="my-helper-text"
+          type="file"
+          inputComponent="input"
+          id="pfp-block"
+          onChange={handleChange('pfp')}
+          endAdornment={
+            <InputAdornment position="end">
+              <AccountCircleRounded />
+            </InputAdornment>
+          }
+          />
+          
+        </FormControl>
         <Button 
         disabled={values.password<5 || values.email<5? true : false}
         fullWidth={false} 
@@ -165,6 +188,7 @@ const Signup = (props) => {
         submit
         </Button>
         </div>
+        
       </form>
     </>
     )
