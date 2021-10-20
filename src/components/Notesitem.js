@@ -9,7 +9,6 @@ import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import ShareIcon from '@material-ui/icons/Share';
 import noteContext from '../context/notes/NoteContext'
 
 
@@ -72,9 +71,7 @@ export default function Notesitems(props) {
             <IconButton onClick={()=>{deleteNote(note._id); props.showAlert('deleted note succesfully','success')}} aria-label="delete">
             <BackspaceOutlinedIcon />
             </IconButton>
-            <IconButton aria-label="share">
-            <ShareIcon />
-            </IconButton>
+
 
         </CardActions>
       </CardContent>

@@ -8,6 +8,7 @@ import Alert from "./components/Alert";
 import Login from './components/Login'
 import Signup from './components/Signup'
 import { useState } from 'react'
+import Cbians from './components/Cbians'
 
 function App () {
   const [alert, setAlert] = useState({msg:'', type:''})
@@ -40,6 +41,9 @@ function App () {
             </Route>
             <Route exact path='/signup'>
               <Signup showAlert={showAlert} />
+            </Route>
+            <Route exact path='/cbians'>
+              <Cbians showAlert={showAlert} />
             </Route>
             
 

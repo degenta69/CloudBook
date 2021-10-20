@@ -28,6 +28,12 @@ const Signup = (props) => {
 
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
+      console.log(prop)
+      // if (prop==='pfp') {
+      //   var input = document.getElementById("pfp").files[0].name;
+      //   console.log(input)
+      //   setValues({...values, [prop]:`${input}`})
+      // }
     };
 
     const handleClickShowPassword = () => {
@@ -36,23 +42,35 @@ const Signup = (props) => {
           showPassword: !values.showPassword,
         });
       };
-    
+
       const handleMouseDownPassword = (event) => {
         event.preventDefault();
       };
 
       const handleSubmit= async (e)=>{
         e.preventDefault();
+
         console.log('click')
         
-            const {name , email, password, pfp}= values;
+        const user = {
+          name: values.name,
+          password: values.password,
+          email: values.email,
+          pfp: values.pfp,
+        }
+        const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('email', values.email);
+        formData.append('password', values.password);
+        formData.append('pfp', user.pfp);
+        console.log(...formData)
           const response = await fetch('http://localhost:5000/api/auth/createuser', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               
-              // 'Content-Type': 'application/x-www-form-urlencoded',
+              //'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify({name, email, password, pfp}) // body data type must match "Content-Type" header
+            body: formData// body data type must match "Content-Type" header
           });
           const json = await response.json();
           console.log(json)
@@ -71,7 +89,7 @@ const Signup = (props) => {
     return (
     <>
 
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form action='http://localhost:5000/api/auth/createuser' id='signup' method='post' onSubmit={handleSubmit} encType="multipart/form-data">
 
         <div className="container row"
         style={{
@@ -157,33 +175,27 @@ const Signup = (props) => {
           />
         </FormControl> 
         
-        <FormControl className='mb-1' sx={{ margin: 'auto', width: '25ch' }} variant="filled">
-        <FormHelperText id="my-helper-text">Profile Pic</FormHelperText>
+        <FormControl className='mb-1' sx={{ margin: 'auto', width: '30ch' }} variant="filled">
+        <FormHelperText htmlFor="pfp">Profile Pic</FormHelperText>
           <FilledInput
           name="pfp"
           area-aria-describedby="my-helper-text"
           type="file"
           inputComponent="input"
-          id="pfp-block"
+          id="pfp"
           onChange={handleChange('pfp')}
-          endAdornment={
-            <InputAdornment position="end">
-              <AccountCircleRounded />
-            </InputAdornment>
-          }
           />
           
         </FormControl>
         <Button 
         disabled={values.password<5 || values.email<5? true : false}
         fullWidth={false} 
-        onClick={handleSubmit}
+        type='submit'
+        component='button'
         className='mb-3'
         sx={{
           width:'20%',
           margin: 'auto',
-
-
         }} variant="contained" color='secondary' placeholder='LogIn' endIcon={<Fingerprint />}>
         submit
         </Button>

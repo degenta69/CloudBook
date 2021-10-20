@@ -5,6 +5,7 @@ import noteContext from '../context/notes/NoteContext'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import { Button } from '@mui/material'
+import Userprofile from './Userprofile'
 
 
 const Addnote = (props) => {
@@ -53,6 +54,7 @@ const Addnote = (props) => {
         transition: 'display 1s ease-in-and-out'
 
       }}>
+        <Userprofile/>
 
         {/* <Login/>
         <Divider component="br" orientation="vertical" variant="middle" flexItem={true}
