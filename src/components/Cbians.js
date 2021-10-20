@@ -34,7 +34,7 @@ const Cbians = () => {
                 maxWidth: 340,
                 widht: '70%',
                 borderWidth: '10px',
-                height: '20rem',
+                height: '30rem',
                 backgroundColor: '#212529',
                 boxShadow: '5px 5px 17.5px -0.5px rgba(0,0,0,0.75)',
                 borderRadius: '0px 4.25px 0px 8px / 37.5px 84.5px 37.5px 37.5px'
@@ -42,10 +42,15 @@ const Cbians = () => {
             >
               <CardActionArea>
                 <CardMedia
+                  sx={{
+                    maxWidth: 340,
+                    widht: '70%',
+                    height: '15rem',
+                }}
                   component='img'
                   height='140'
-                  image={`${cbian.pfp}`}
-                  alt='green iguana'
+                  image={`${cbian.pfp!==undefined?cbian.pfp:'http://localhost:5000/uploads/images.png'}`}
+                  alt='no pfp availble'
                 />
                 <CardContent>
                   <Typography
