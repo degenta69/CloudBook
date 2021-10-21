@@ -5,41 +5,43 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import  IconButton from '@mui/material/IconButton';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import Button from '@material-ui/core/Button'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import TextField from '@mui/material/TextField'
+import { useHistory } from 'react-router';
 
 
 const Userprofile = () => {
 
   const [show, setshow] = useState(false);
 
+  let history = useHistory()
+
   const [aboutMe, setaboutMe] = useState({aboutMe:''});
   
   const dataInitial = []
   const [data, setdata] = useState(dataInitial);
+
+  if(history.location.pathname){
+
+    async function name(){ 
+     const response = await fetch('http://localhost:5000/api/auth/getuser', {
+       method: 'POST', // *GET, POST, PUT, DELETE, etc.
+       headers: {
   
-  window.onload = ()=>{
-    const ButtonID = 'getUserData';
-    document.getElementById(ButtonID).click();
-    console.log(aboutMe)
+         'auth-token': localStorage.getItem('token'),
+         // 'Content-Type': 'application/x-www-form-urlencoded',
+       },
+      // body: JSON.stringify({name,pfp,email,date}) // body data type must match "Content-Type" header
+     });
+     const json = await response.json();
+     console.log(json)
+     console.log(data.pfp)
+     setdata(json.user)
+   }
+   name()
+
   }
 
-  const getData=async()=>{ 
-    const response = await fetch('http://localhost:5000/api/auth/getuser', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-
-        'auth-token': localStorage.getItem('token'),
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-     // body: JSON.stringify({name,pfp,email,date}) // body data type must match "Content-Type" header
-    });
-    const json = await response.json();
-    console.log(json)
-    console.log(data.pfp)
-    setdata(json.user)
-  }
 
   const date = new Date(data.Date).toGMTString()
 
@@ -58,18 +60,6 @@ const Userprofile = () => {
       boxShadow: '5px 5px 17.5px -0.5px rgba(0,0,0,0.75)',
       borderRadius: "0px 4.25px 0px 8px / 37.5px 84.5px 37.5px 37.5px"
       }}>
-    <Button
-     className="d-none"
-     size='large'
-    //  sx={{
-    //    display: 'none',
-    //  }}
-     onClick={getData}
-     variant='contained'
-     id='getUserData'
-   >
-     ADD NOTE
-   </Button>
       <CardActionArea>
         <CardMedia
           component="img"

@@ -4,21 +4,29 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import { useHistory } from 'react-router'
+
 
 const Cbians = () => {
-  const [data, setdata] = useState([])
+    let history = useHistory();
+    const [data, setdata] = useState([])
+    if (history.location.pathname==='/cbians'){
 
-  window.onload = async () => {
-    const response = await fetch('http://localhost:5000/api/auth/getallusers', {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const json = await response.json()
-    console.log(json)
-    setdata(json.user)
-  }
+         async function name() {
+            console.log()
+            const response = await fetch('http://localhost:5000/api/auth/getallusers', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const json = await response.json()
+            console.log(json)
+            setdata(json.user)
+        }
+        name()
+    }
+
 
   return (
     <>
